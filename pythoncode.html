@@ -2,7 +2,7 @@
 <html lang="en-US">
   <head>
     <title>Python Console Output</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono" rel="stylesheet">
     <style>
 html, body {
   padding: 0;
@@ -13,7 +13,7 @@ html, body {
 
 body {
   height: 100vh;
-  overflow: auto;
+  overflow: hidden auto;
 }
 
 pre {
@@ -41,13 +41,24 @@ pre:not(:empty)::before {
     <pre></pre>
     <script>
 const pre = document.querySelector('pre')
+let inNotify = false
 
 function notifySize () {
+  if (inNotify) return // don't recurse!
+
+  inNotify = true
+
+  document.body.style.overflow = 'hidden scroll' // so scrollbar affects height calculation
+  const height = pre.clientHeight || 0
+  document.body.style.overflow = 'hidden auto'
+
+  inNotify = false
+
   window.parent.postMessage({
     from: 'outputIframe',
     type: 'resize',
     stepId: parseInt(/(\d+)\/output/.exec(String(window.location))[1], 10),
-    height: pre.clientHeight || 0,
+    height
   }, window.location.origin)
 }
 
