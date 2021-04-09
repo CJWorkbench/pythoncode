@@ -11,13 +11,13 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "~=3.8"
-cjwmodule = "~=3.1"
-cjwpandasmodule = "~=0.0.2"
+python = "~=3.8.0"
+cjwmodule = "~=4.0"
+cjwpandasmodule = "~=0.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "~=6.0"
-pytest-cov = "~= 2.10"
+pytest-cov = "~=2.10"
 
 [tool.isort]
 # Black compatibility
